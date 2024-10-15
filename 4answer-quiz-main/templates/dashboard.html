@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="static/dash.css">
+    <title>داشبورد</title>
+</head>
+<body>
+    <div class="dashboard-container">
+        <h1>داشبورد</h1>
+        <h2>نمرات شما:</h2>
+        <table>
+            <tr>
+                <th>تاریخ</th>
+                <th>امتیاز</th>
+                <th>رنگ مغز</th>
+                <th>توضیحات</th>
+
+            </tr>
+            {% for score in scores %}
+            <tr>
+                <td>{{ score[5]}}</td>
+                <td>{{ score[2] }}</td>
+                <td>{{ score[3] }}</td>
+                <td>{{ score[4] }}</td>
+
+            </tr>
+            {% endfor %}
+        </table>
+        <a href="/">خروج</a>
+    </div>
+</body>
+</html>

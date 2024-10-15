@@ -1,0 +1,62 @@
+<!DOCTYPE html>  
+<html lang="fa">  
+<head>  
+    <meta charset="UTF-8">  
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">  
+    <link rel="stylesheet" href="static/logsign.css">  
+    <title>Login</title>   
+</head>  
+<body>  
+    <div class="container">  
+        <h1 id="form-title">Login</h1>  
+        
+        <div id="login-form" class="form-section">  
+            <form action="{{ url_for('login') }}" method="post">  
+                <input type="text" name="username" placeholder="Username" required>  
+                <input type="password" name="password" placeholder="Password" required>  
+                <button type="submit">ورود</button>  
+            </form>  
+            <p class="rc">حساب کاربری ندارید؟ <a href="#" onclick="toggleForms()"> ثبت نام</a></p>    
+        </div>  
+
+        <div id="signup-form" class="form-section" style="display: none;">  
+            <form action="{{ url_for('signup') }}" method="post">  
+                <input type="text" name="username" placeholder="Username" required>  
+                <input type="password" name="password" placeholder="Password" required>  
+                <button type="submit">ثبت نام</button>  
+            </form>  
+            <p class="rc">از قبل حساب کاربری داشته اید؟ <a href="#" onclick="toggleForms()">ورود </a></p>    
+        </div>  
+
+        {% with messages = get_flashed_messages(with_categories=true) %}  
+            {% if messages %}  
+                <ul class="flashed-messages">  
+                {% for category, message in messages %}  
+                    <li class="flash {{ category }}">{{ message }}</li>  
+                {% endfor %}  
+                </ul>  
+            {% endif %}  
+        {% endwith %}  
+    </div>  
+
+    <script>  
+        function toggleForms() {  
+            const loginForm = document.getElementById("login-form");  
+            const signupForm = document.getElementById("signup-form");  
+            const formTitle = document.getElementById("form-title");  
+
+            if (loginForm.style.display === "none") {  
+                // Show login form and hide signup  
+                loginForm.style.display = "block";  
+                signupForm.style.display = "none";  
+                formTitle.textContent = "Login";  
+            } else {  
+                // Show signup form and hide login  
+                loginForm.style.display = "none";  
+                signupForm.style.display = "block";  
+                formTitle.textContent = "Sign Up";  
+            }  
+        }  
+    </script>  
+</body>  
+</html>
